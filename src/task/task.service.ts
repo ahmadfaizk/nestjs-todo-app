@@ -16,7 +16,7 @@ export class TaskService {
     }
 
     async getTask(id: string): Promise<Task> {
-        return await this.taskModel.findById(id).populate('category')
+        return await this.taskModel.findById(id)
     }
 
     async createTask(data: TaskDTO): Promise<Task> {

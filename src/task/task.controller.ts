@@ -43,7 +43,7 @@ export class TaskController {
     @Post()
     async createTask(@Body() data: TaskDTO) {
         const task = await this.taskService.createTask(data)
-        await this.categoryService.pushTask(data.category, task)
+        //await this.categoryService.pushTask(data.category, task)
         return {
             statusCode: HttpStatus.OK,
             message: 'Success create task',

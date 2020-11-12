@@ -6,16 +6,19 @@ export type TaskDocument = Task & Document
 
 @Schema()
 export class Task {
-    @Prop()
+    @Prop({ required: true })
     name: string;
 
-    @Prop()
+    @Prop({ required: true })
     description: string;
 
-    @Prop()
-    time: string;
+    @Prop({ required: true })
+    date: Date;
 
-    @Prop({ type: Types.ObjectId, ref: 'Category' })
+    @Prop({ required: true, default: false })
+    done: boolean;
+
+    @Prop({ type: Types.ObjectId, ref: 'Category', required: true })
     category: Category;
 }
 
