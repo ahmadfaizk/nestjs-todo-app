@@ -1,15 +1,11 @@
 import { Body, Controller, Delete, Get, HttpStatus, Param, Post, Put } from '@nestjs/common';
-import { Category } from 'src/category/category.schema';
-import { CategoryService } from 'src/category/category.service';
 import { TaskDTO } from './task.dto';
-import { Task } from './task.schema';
 import { TaskService } from './task.service';
 
 @Controller('task')
 export class TaskController {
     constructor(
-        private taskService: TaskService,
-        private categoryService: CategoryService
+        private taskService: TaskService
     ){}
 
     @Get()
@@ -19,14 +15,6 @@ export class TaskController {
             statusCode: HttpStatus.OK,
             message: 'Success get all task',
             data: tasks
-        }
-    }
-
-    @Get('tes')
-    test() {
-        return {
-            category: Category.name,
-            task: Task.name
         }
     }
 
@@ -43,7 +31,6 @@ export class TaskController {
     @Post()
     async createTask(@Body() data: TaskDTO) {
         const task = await this.taskService.createTask(data)
-        //await this.categoryService.pushTask(data.category, task)
         return {
             statusCode: HttpStatus.OK,
             message: 'Success create task',
